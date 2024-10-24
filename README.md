@@ -1,4 +1,4 @@
-# servidor_nginx
+# Servidor_Nginx
 README - Servidor Nginx e Monitoramento de Serviço
 Este projeto tem como objetivo configurar um servidor Nginx no Linux, implementar um script de monitoramento que valida o status do serviço, e automatizar a execução do script a cada 5 minutos. O script gera logs sobre o status do serviço, diferenciando quando o serviço está online ou offline, e os resultados são armazenados em arquivos separados. Todo o processo é versionado para controle.
 
