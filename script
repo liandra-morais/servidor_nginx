@@ -1,38 +1,14 @@
-    1  yuiuuiuuuu
-    2  DATA_HORA=$(date '+%Y-%m-%d %H:%M:%S')
-    3  SERVICO="Nginx"
-    4  DIRETORIO="/caminho/diretorio/logs"
-    5  ONLINE="${DIRETORIO}/online.log"
-    6  sudo apt update
-    7  sudo apt install nginx
-    8  sudo systemctl status nginx
-    9  nano verificar_nginx.sh
-   10  mkdir atividade_linux
-   11  ls
-   12  cd atividade_linux
-   13  nano verificar_nginx.sh
-   14  crontab -e
-   15  git init
-   16  git add.
-   17  git add atividade_linux/
-   18  add atividade_linux.sh
-   19  git add atividade_linux
-   20  git --add atividade_linux.
-   21  git status
-   22  git commit -m"Versão inicial"
-   23  git add verificar_nginx.sh
-   24  git commit -m "Versão inicial"
-   25  git config --global --edit
-   26  git commit --amend --res-author
-   27  git config --global --edit
-   28  git config --global --list
-   29  git commit -m "Versao inicial"
-   30  git config --global user.name "liandra-morais"
-   31  git config --global user.email "liandracarolina9@gmail.com"
-   32  git config --global --list
-   33  crontab -l
-   34  git status
-   35  sudo system ctl status nginx
-   36  systemctl status nginx
-   37  ip addr show
-   38  history
+#!/bin/bash
+
+LOG_DIR=~/nginx_status_logs 
+DATA_HORA=$(date '+%Y-%m-%d %H:%M:%S') 
+SERVICE="Nginx" 
+  
+SERVICE_STATUS=$(systemctl is-active nginx)
+
+if [ "$SERVICE_STATUS" = "active" ]; then STATUS="ONLINE" 
+MENSAGEM="O serviço está rodando normalmente." echo "$DATA_HORA - $SERVICE - $STATUS - $MENSAGEM" >> $LOG_DIR/nginx_online.log 
+else STATUS="OFFLINE" MENSAGEM="O serviço está offline ou inativo." 
+echo "$DATA_HORA - $SERVICE - $STATUS - $MENSAGEM" >> $LOG_DIR/nginx_offline.log 
+
+fi 
