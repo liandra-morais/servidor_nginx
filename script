@@ -1,14 +1,18 @@
 #!/bin/bash
 
-LOG_DIR=~/nginx_status_logs 
-DATA_HORA=$(date '+%Y-%m-%d %H:%M:%S') 
-SERVICE="Nginx" 
-  
-SERVICE_STATUS=$(systemctl is-active nginx)
+Variáveis
+DATA_HORA=$(date '+%Y-%m-%d %H:%M:%S')
+SERVICO="Nginx"
+DIRETORIO="/caminho/diretorio/logs"
+ONLINE="${DIRETORIO}/online.log"
+OFFLINE="${DIRETORIO}/offline.log"
 
-if [ "$SERVICE_STATUS" = "active" ]; then STATUS="ONLINE" 
-MENSAGEM="O serviço está rodando normalmente." echo "$DATA_HORA - $SERVICE - $STATUS - $MENSAGEM" >> $LOG_DIR/nginx_online.log 
-else STATUS="OFFLINE" MENSAGEM="O serviço está offline ou inativo." 
-echo "$DATA_HORA - $SERVICE - $STATUS - $MENSAGEM" >> $LOG_DIR/nginx_offline.log 
+Verifica o status do Nginx
+STATUS=$(systemctl is-active nginx)
 
-fi 
+Condição para verificar se o Nginx está online
+if [ "$STATUS" = "active" ]; then
+    echo "$DATA_HORA - $SERVICO - ONLINE - O serviço está rodando." >> $ONLINE
+else
+    echo "$DATA_HORA - $SERVICO - OFFLINE - O serviço está parado." >> $OFFLINE
+fi
